@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 export default function Note(props) {
   const {id, deleteNote, note} = props
   
+  
 
   return (
     <div className="p-8 flex flex-wrap gap-6">
@@ -13,7 +14,7 @@ export default function Note(props) {
             <p className="text-md">{note.content}</p>
 
             <div className="flex flex-row justify-between items-end">
-              <p>date</p>
+              <p>Date</p>
               <button onClick={() => {deleteNote(index)}}>
                 <i className="fa-solid fa-trash-can"></i>
               </button>

@@ -9,7 +9,9 @@ export default function App() {
     content: "",
   });
 
-  const [note, setNote] = useState([]);
+  const storedNotes = JSON.parse(localStorage.getItem('notes'))
+
+  const [note, setNote] = useState(storedNotes);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -41,6 +43,9 @@ export default function App() {
     });
   }
   
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(note))
+  }, [note])
 
   return (
     <>

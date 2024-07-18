@@ -9,7 +9,7 @@ export default function App() {
     content: "",
   });
 
-  const storedNotes = JSON.parse(localStorage.getItem('notes'))
+  const storedNotes = JSON.parse(localStorage.getItem("notes")) || [];
 
   const [note, setNote] = useState(storedNotes);
 
@@ -22,6 +22,7 @@ export default function App() {
   }
 
   function updateNote(event) {
+    event.preventDefault(); // Ensure this is called to prevent default form submission behavior
     if (!addNote.title || !addNote.content) {
       alert("Please enter both title and content.");
       return;
@@ -32,20 +33,20 @@ export default function App() {
       title: "",
       content: "",
     });
-    event.preventDefault();
   }
 
   function deleteNote(id) {
     setNote((prevNotes) => {
-      return prevNotes.filter((note, index) => {
-        return index !== id;
-      });
+      if (!prevNotes || prevNotes.length === 0) {
+        return []; // Return an empty array if there are no notes
+      }
+      return prevNotes.filter((note, index) => index !== id);
     });
   }
-  
+
   useEffect(() => {
-    localStorage.setItem('notes', JSON.stringify(note))
-  }, [note])
+    localStorage.setItem("notes", JSON.stringify(note));
+  }, [note]);
 
   return (
     <>
@@ -55,7 +56,6 @@ export default function App() {
         handleChange={handleChange}
         addNote={addNote}
       />
-
       <Note note={note} deleteNote={deleteNote} />
     </>
   );

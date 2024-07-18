@@ -25,7 +25,7 @@ export default function NoteApp(props) {
           ></textarea>
           <button
             onClick={updateNote}
-            className="p-4 sm:p-6 hover:text-yellow-300 text-yellow-400 sm:text-2xl md:text-3xl absolute right-4 sm:right-10 bottom-[-30px] sm:bottom-[-46px]"
+            className="p-4 sm:p-6 hover:text-yellow-300 text-yellow-400 sm:text-2xl md:text-3xl absolute right-4 sm:right-10 bottom-8 sm:bottom-[-46px]"
           >
             <i className="fa-solid fa-circle-plus"></i>
           </button>
